@@ -35,6 +35,9 @@ function search_page(){
     </div>
     `
 }
+const login = () =>{
+    
+}
 const subirArchivo = (event) =>{
     const file = event.target.files[0]
     const reader = new FileReader();
