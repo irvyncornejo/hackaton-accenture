@@ -36,7 +36,7 @@ function search_page(){
     `
 }
 const login = () =>{
-    
+    console.log("hola")
 }
 const subirArchivo = (event) =>{
     const file = event.target.files[0]
