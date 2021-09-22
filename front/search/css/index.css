@@ -1,0 +1,28 @@
+.title1 {
+    text-align: center;
+    margin: 10vw;
+}
+
+.container {
+    text-align: center;
+    min-width: 380px;
+}
+.input-field {
+    display: inline-block;
+    width: 80%;
+    max-width: 800px;
+}
+#boton-voz {
+    margin: -120px 10px 10px 10px;
+    width: 40px;
+    padding: 0px 10px;
+}
+#boton-stop {
+    margin: auto 10px 0px -55px;
+    width: 40px;
+    padding: 0px 10px;
+    opacity: 0;
+}
+#boton-buscar {
+    margin: 20px;
+}
