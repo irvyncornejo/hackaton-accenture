@@ -1,5 +1,11 @@
 
 window.onload = load_files()
+document.addEventListener('DOMContentLoaded', (e) => loadMaterialize())    
+
+const instructions = $("#info")
+const textbox = $("#autocomplete-input")
+
+
 
 function load_files(){
     document.getElementById("root").innerHTML = `
@@ -34,6 +40,8 @@ function search_page(){
         <a id="boton-stop" class="waves-effect waves-light btn" onclick="stop_recording()"><i class="material-icons left">stop</i></a>
     </div>
     `
+    loadMaterialize()
+    loadVoice()
 }
 const subirArchivo = (event) =>{
     const file = event.target.files[0]
@@ -62,32 +70,26 @@ const envioApi = async (content, name) =>{
     console.log(res)
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    var options = {
+const loadMaterialize = () => {
+    const options = {
         data: {
         "Apple": null,
         "Microsoft": null,
         "Google": 'https://placehold.it/250x250'
         }
     }
-    
-    var elems = document.querySelectorAll('.autocomplete');
-    var instances = M.Autocomplete.init(elems, options);
-    });
-
-    var speechRecognition = window.webkitSpeechRecognition
-
-    var recognition = new speechRecognition()
-
-    var textbox = $("#autocomplete-input")
-
-    var instructions = $("#info")
-
-    var content = ''
+    const elems = document.querySelectorAll('.autocomplete')
+    const instances = M.Autocomplete.init(elems, options)
+}
 
 
-    recognition.continuous = true
+//$("#boton-voz")
+const loadVoice = () =>{
+    const speechRecognition = window.webkitSpeechRecognition
+const recognition = new speechRecognition()
 
+let content = ''
+recognition.continuous = true
     //recognition started
 
     recognition.onstart = function() {
@@ -117,11 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
             content += ''
         }    
         recognition.start()
-}) 
+    }) 
 
-textbox.on('input', function(){
-    content = $(this).val()
-})
+    textbox.on('input', function(){
+        content = $(this).val()
+    })
+}
 
 // document.getElementById("boton-stop").style.opacity = "1"
 
