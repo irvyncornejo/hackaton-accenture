@@ -9,9 +9,12 @@ const textbox = $("#autocomplete-input")
 
 function load_files(){
     document.getElementById("root").innerHTML = `
-    <form>
-        <div class="file-field input-field">
-            <div class="btn">
+    <div class="title1">
+        <h1>Subir Archivos</h1>
+    </div>
+    <form class="container">
+        <div class="container file-field input-field">
+            <div class="btn inner-div">
                 <span>File</span>
                 <input type="file" onchange="subirArchivo(event)" />
             </div>
@@ -30,7 +33,7 @@ function search_page(){
     </div>
     <div class="container">
         <p id="info"></p>
-        <div class="input-field">                    
+        <div class="input-field inner-div">                    
             <i class="material-icons prefix">textsms</i>
             <input type="text" id="autocomplete-input" class="autocomplete">
             <label for="autocomplete-input">Caracteristicas</label>
@@ -42,6 +45,9 @@ function search_page(){
     `
     loadMaterialize()
     loadVoice()
+}
+const login = () =>{
+    console.log("hola")
 }
 const subirArchivo = (event) =>{
     const file = event.target.files[0]
