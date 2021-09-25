@@ -2,6 +2,8 @@
 window.onload = load_files()
 document.addEventListener('DOMContentLoaded', (e) => loadMaterialize())    
 
+
+
 let content = ''
 
 const loadMobile = () =>{
@@ -26,7 +28,10 @@ function load_files(){
         </div>
     </form>
 
-    <div id="elements">
+    <div class="container wrapper">
+        <ul  id="elements" class="collection">
+            
+        </ul>
     </div>
     `    
 }
@@ -60,8 +65,19 @@ const subirArchivo = (event) =>{
     reader.onload = async (e) =>{
         const content = e.target.result
         const res = await envioApi(content.split(',')[1], file.name)
-        console.log(res.body['elementos_encontrados'])
-        document.getElementById('elements').innerHTML = `${res.body['elementos_encontrados'][0]['perro']}`
+
+        document.getElementById('elements').innerHTML = ''
+        res.body['elementos_encontrados'].forEach(element => {
+            document.getElementById('elements').innerHTML += `
+                <li class="collection-item avatar">
+                    <i class="material-icons circle amber darken-4">burst_mode</i>
+                    <span class="title">${element['Name']}</span>
+                    <p>${element['Confidence'].toFixed(3)} %
+                    </p>
+                </li>
+            `  
+        })
+        
         document.getElementById('file_').value = ''
     }
     reader.readAsDataURL(file)

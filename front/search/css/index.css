@@ -45,3 +45,31 @@ color: #512da8 !important;
 .brand-logo { 
     margin-left: 40px;
 }
+i {
+    margin-top: 10px;
+}
+ul span {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 30px;
+    min-width: 100px;
+    font-weight: bold;
+}
+ul p{
+    padding-left: 210px;
+    padding-top: 20px;
+    color: green;
+}
+#elements {
+    text-align: left;
+    margin: 10px 18vw ;
+    max-width: 40vw;
+    min-width: 370px;
+}
+
+@media screen and ( min-width: 800px ) {
+    #elements {
+        margin: 10px 22vw ;
+        max-width: 18vw;
+    }
+}
