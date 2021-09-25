@@ -26,3 +26,22 @@
 #boton-buscar {
     margin: 20px;
 }
+input:focus {
+    border-bottom: 1px solid #535353 !important;
+    box-shadow: 0 1px 0 0 #bebebe !important;
+  }
+label.active {
+color: #512da8 !important;
+}
+.file-path:valid {
+    border-bottom: 1px solid #535353 !important;
+    box-shadow: 0 1px 0 0 #bebebe !important;
+  }
+
+.side-nav {
+    padding: 100px;
+}
+
+.brand-logo { 
+    margin-left: 40px;
+}

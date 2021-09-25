@@ -14,19 +14,30 @@
 </head>
 <body>
     <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="active"><a href="#"onclick="load_files()">Cargar Archivo</a></li>
-                <li><a href="#" onclick="search_page()">Buscar</a></li>
-                <li><a href="#" onclick="">Borrar</a></li>
-            </ul>
+        <div class="nav-wrapper deep-purple darken-2">
+          <a href="#!" class="brand-logo">CualiTeam</a>
+          <a href="#" onclick="loadMobile()" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#"onclick="load_files()">Cargar Archivo</a></li>
+            <li><a href="#" onclick="search_page()">Buscar</a></li>
+            <li><a href="#" onclick="">Borrar</a></li>
+            <li><a href="#" onclick="">Cerrar Sesión</a></li>
+          </ul>
         </div>
-    </nav>
+      </nav>
+    
+      <ul class="sidenav" id="mobile-demo">
+        <li class="active"><a href="#"onclick="load_files()">Cargar Archivo</a></li>
+        <li><a href="#" onclick="search_page()">Buscar</a></li>
+        <li><a href="#" onclick="">Borrar</a></li>
+        <li><a href="#" onclick="">Cerrar Sesión</a></li>
+      </ul>
     <div class="root" id="root">
     </div>
-
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src=".\js\main.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
