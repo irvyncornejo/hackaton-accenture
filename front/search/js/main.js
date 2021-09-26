@@ -2,6 +2,17 @@
 window.onload = load_files()
 document.addEventListener('DOMContentLoaded', (e) => loadMaterialize())    
 
+const getToken = () =>{
+    try{
+        const url = window.location
+        const hash = url.hash.split('=')[1]
+        const tk = hash.split('&')[0]
+        localStorage.setItem('TK', tk)
+    }
+    catch(e){
+        console.log(e)
+    }
+}
 
 
 let content = ''
@@ -12,29 +23,37 @@ const loadMobile = () =>{
 }
 
 function load_files(){
-    getToken()
-    document.getElementById("root").innerHTML = `
-    <div class="title1">
-        <h1>Subir Archivos</h1>
-    </div>
-    <form class="container">
-        <div class="container file-field input-field">
-            <div class="btn inner-div deep-purple darken-2">
-                <span >File</span>
-                <input type="file" onchange="subirArchivo(event)" />
-            </div>
-            <div class="file-path-wrapper">
-                <input id="file_" class="file-path validate" type="text" placeholder="Upload one or more files" >
-            </div>
+    try{
+        document.getElementById("root").innerHTML = `
+        <div class="title1">
+            <h1>Subir Archivos</h1>
         </div>
-    </form>
-
-    <div class="container wrapper">
-        <ul  id="elements" class="collection">
-            
-        </ul>
-    </div>
-    `    
+        <form class="container">
+            <div class="container file-field input-field">
+                <div class="btn inner-div deep-purple darken-2">
+                    <span >File</span>
+                    <input type="file" onchange="subirArchivo(event)" />
+                </div>
+                <div class="file-path-wrapper">
+                    <input id="file_" class="file-path validate" type="text" placeholder="Upload one or more files" >
+                </div>
+            </div>
+        </form>
+    
+        <div class="container wrapper">
+            <ul  id="elements" class="collection">
+                
+            </ul>
+        </div>
+        `  
+        const url = window.location
+            const hash = url.hash.split('=')[1]
+            const tk = hash.split('&')[0]
+            localStorage.setItem('TK', tk)
+        }
+        catch(e){
+            console.log(e)
+        }  
 }
 
 function search_page(){
@@ -161,16 +180,4 @@ const sendSearch = () =>{
     console.log(value)
     input.value = ''
     content = ''
-}
-
-const getToken = () =>{
-    try{
-        const url = window.location
-        const hash = url.hash.split('=')[1]
-        const tk = hash.split('&')[0]
-        localStorage.setItem('TK', tk)
-    }
-    catch(e){
-        console.log(e)
-    }
 }
