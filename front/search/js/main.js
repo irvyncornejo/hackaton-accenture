@@ -12,6 +12,7 @@ const loadMobile = () =>{
 }
 
 function load_files(){
+    getToken()
     document.getElementById("root").innerHTML = `
     <div class="title1">
         <h1>Subir Archivos</h1>
@@ -160,4 +161,16 @@ const sendSearch = () =>{
     console.log(value)
     input.value = ''
     content = ''
+}
+
+const getToken = () =>{
+    try{
+        const url = window.location
+        const hash = url.hash.split('=')[1]
+        const tk = hash.split('&')[0]
+        localStorage.setItem('TK', tk)
+    }
+    catch(e){
+        console.log(e)
+    }
 }
