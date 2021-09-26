@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 
 class EnvioImagen:
     def __init__(self):
-        self.url = 'https://w7a2uoj4wl.execute-api.us-west-2.amazonaws.com/test-dev/upload'
+        self.url = 'https://u30tldugjl.execute-api.us-east-1.amazonaws.com/prod/carga-de-imagenes'
 
     def __convertir_imagen(self, path):
         image = open(path, 'rb')
