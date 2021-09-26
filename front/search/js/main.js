@@ -30,6 +30,7 @@ function load_files(){
         </div>
     </form>
 
+    <div id="alerta"></div>
     <div class="container wrapper">
         <ul  id="elements" class="collection">
             
@@ -64,14 +65,17 @@ function search_page(){
     <div class="container wrapper">
         <ul  id="images" class="collection">
             
+            
+            
+            
         </ul>
     </div>
     `
+
+
+
     loadMaterialize()
     loadVoice()
-}
-const login = () =>{
-    console.log("hola")
 }
 
 const subirArchivo = (event) =>{
@@ -80,6 +84,8 @@ const subirArchivo = (event) =>{
     reader.onload = async (e) =>{
         const content = e.target.result
         const res = await envioApi(content.split(',')[1], file.name)
+        
+        alerta(res.body['elementos_encontrados']['Text'], res.body['file_path'])
 
         document.getElementById('elements').innerHTML = ''
         res.body['elementos_encontrados']['Labels'].forEach(element => {
@@ -100,7 +106,8 @@ const subirArchivo = (event) =>{
 }
 
 const envioApi = async (content, name) =>{
-    const url = "https://w7a2uoj4wl.execute-api.us-west-2.amazonaws.com/test-dev/upload"
+    loader("elements")
+    const url = "https://u30tldugjl.execute-api.us-east-1.amazonaws.com/prod/carga-de-imagenes"
     const headers = { 
         'Accept': 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8'
@@ -350,6 +357,7 @@ const loadMaterialize = () => {
             "Turtle": null,
             "Utility Pole": null,
             "Vest": null,
+            "Vehicle": null,
             "Violin": null,
             "Wallet": null,
             "Wedding Cake": null,
@@ -407,7 +415,7 @@ const loadVoice = () =>{
 }
 
 const getImages = async (value) =>{
-    const url = "https://w7a2uoj4wl.execute-api.us-west-2.amazonaws.com/test-dev/get-images"
+    const url = "https://u30tldugjl.execute-api.us-east-1.amazonaws.com/prod/obtener-imagenes"
     const headers = { 
         'Accept': 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8'
@@ -422,21 +430,59 @@ const getImages = async (value) =>{
     return r
 }
 
-
 const sendSearch = async () =>{
     const input = document.getElementById('autocomplete-input')
     const value = input.value
     input.value = ''
     content = ''
-    const res = await getImages(value)
+    const res = await getImages(value.toLowerCase())
     document.getElementById('images').innerHTML = ''
+    if (res.body.length > 0) {
         res.body.forEach(element => {
             document.getElementById('images').innerHTML += `
-                <li class="collection-item avatar">
-                    <i class="material-icons circle amber darken-4">burst_mode</i>
-                    <span class="title">${element['caracteristica']}</span>
-                    <a href="${element['ruta']}">${element['caracteristica']}</a>
-                </li>
+                <img src="${element['ruta']}" alt="${element['idImagen']}" class="image-found">
             `  
         })
+    }
+    else {
+        document.getElementById('images').innerHTML = `                
+            <p>No se encontraron coincidencias</p>
+            ` 
+    }
+    
+}
+
+const loader = (id) => {
+    document.getElementById(id).innerHTML = `
+    <div class="progress">
+    <div class="indeterminate deep-purple darken-2"></div>
+    </div>   
+    `
+}
+
+const alerta = (text, image) => {
+    console.log(text)
+    if (text){
+        document.getElementById('alerta').innerHTML = `
+            <div class="row">
+            <div class="col s2 m2 l2">
+            </div>
+                <div class="col s8 m8 l8">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://hackaton-accenture-prod.s3.amazonaws.com/${image}">
+                        </div>
+                        <div class="card-content">
+                            <p>En la imagen se identificó la placa:</p>
+                        </div>
+                        <div class="card-action">
+                            <h4 href="#">${text[0]["DetectedText"]}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2 m2 l2">
+                </div>
+            </div>    
+        `
+    }
 }

@@ -76,3 +76,7 @@ ul p{
 i {
     margin-top: 0px;
 }
+
+ul img {
+    max-width: 300px;
+}
