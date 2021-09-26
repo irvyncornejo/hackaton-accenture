@@ -45,6 +45,7 @@ if __name__ == '__main__':
         url = toma_foto()
         time.sleep(2)
         res = EnvioImagen().enviar_imagen(url)
+        print(res['body'])
         if res['body']['elementos_encontrados']['Text']:
             print(res['body'])
             buzzer.on()

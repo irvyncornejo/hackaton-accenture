@@ -20,7 +20,7 @@ class EnvioImagen:
         
         body = {
             'autonomo': True,
-            'name': path,
+            'name': path.split('/')[-1],
             'content': content
         }
 
