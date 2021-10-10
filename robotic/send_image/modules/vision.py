@@ -1,13 +1,13 @@
 import base64
 import requests
 import json
-import logging
 
-logging.basicConfig(level=logging.INFO)
-
-class EnvioImagen:
-    def __init__(self):
-        self.url = 'https://w7a2uoj4wl.execute-api.us-west-2.amazonaws.com/test-dev/upload'
+class Imagen:
+    def __init__(self, url):
+        """
+            Clase que envía la foto al endpoint que se define al inicio de la clases
+        """
+        self.url = url
 
     def __convertir_imagen(self, path):
         image = open(path, 'rb')
@@ -15,7 +15,7 @@ class EnvioImagen:
         image_64_encode = base64.encodestring(image_read)
         return image_64_encode.decode('ascii')
 
-    def enviar_imagen(self, path):
+    def enviar(self, path):
         content = self.__convertir_imagen(path)
         
         body = {
